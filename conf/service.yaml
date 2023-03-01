@@ -1,0 +1,10 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: __app-name__
+  namespace: __namespace__
+spec:
+  selector:
+    app: __app-name__
+  ports:
+    - port: 80

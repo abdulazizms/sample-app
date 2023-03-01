@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: __app-name__
+spec:
+  selector:
+    matchLabels:
+      app: __app-name__
+  replicas: __replicas__
+  template:
+    metadata:
+      labels:
+        app: __app-name__
+    spec:
+      imagePullSecrets:
+      - name: __image-secret__
+      containers:
+      - name: __app-name__
+        image: harbor-wjv.trial-kl.ms-biznetgio.net:8443/__image-name__:__image-tag__
+        ports:
+        - containerPort: 80
+        resources:
+         requests:
+          memory: 10M
+          cpu: 10m
+         limits:
+          memory: __memory__M
+          cpu: __cpu__m
+        readinessProbe:
+          tcpSocket:
+            port: 80
+          initialDelaySeconds: 10
+          periodSeconds: 10
